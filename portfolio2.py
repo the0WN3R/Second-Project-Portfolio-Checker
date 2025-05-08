@@ -26,7 +26,7 @@ portfolio_value = ADBE_price + BA_price + DELL_price + DIA_price + DLTR_price + 
 with open("portfolio.txt") as file:
     previous_portfolio_value = float(file.read().strip())
 
-print("Your net gain/loss today was: $", round(portfolio_value - previous_portfolio_value, 2), sep="")
+print(f"Your net gain/loss today was: ${round(portfolio_value - previous_portfolio_value, 2)}")
 
 with open("portfolio.txt", "w") as file2:
     file2.write(str(portfolio_value))
@@ -40,6 +40,6 @@ if input("Would you like a more detailed look into any of your stocks? ") in ["y
         detailed_stock = (yf.Ticker(detailed_ticker)).info.get("regularMarketPrice")
         detailed_ticker_owned = globals().get(f"{detailed_ticker}_price")
         number_of_shares = int(float(detailed_ticker_owned) / float(detailed_stock))
-        print("The stock is worth", detailed_stock)
+        print(f"The stock is worth {detailed_stock}")
         print(f"The total amount owned is {round(float(detailed_ticker_owned), 2)}")
         print(f"You own {number_of_shares} shares")
